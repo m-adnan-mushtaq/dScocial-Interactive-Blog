@@ -72,7 +72,7 @@
           <% for( let i = 1; i < recentPosts.length ;i++ ) { %>
             <div class="row my-2 align-items-start  data-aos="fade-up"
             data-aos-anchor-placement="center-bottom"   data-aos-duration="1000"  data-aos-once="true">
-              <div class="col-4 align-self-start"
+              <div class="col-sm-4 align-self-start"
             
               >
                 
@@ -80,7 +80,7 @@
                   <img loading="lazy" src="<%=recentPosts[i].coverImageUrl%>" alt="artile-title" class="post-img img-zoom align-top"">
                 </div>
               </div>
-              <div class="col-8">
+              <div class="col-sm-8">
                 <div class="content my-2">
                   <a href="/posts/<%=recentPosts[i]._id%>" class="article-title">
                     <h5><%=(recentPosts[i].title.length>31)?recentPosts[i].title.substring(0,31)+'...':recentPosts[i].title%></h5>
@@ -128,7 +128,7 @@
       <% }else{%>
               <% allPosts.forEach(post => { %>
                 <div class="row my-3">
-                  <div class="col-8"
+                  <div class="col-sm-8"
                   data-aos="fade-right"
                   data-aos-duration="1500"
                   data-aos-once="true"
@@ -149,7 +149,7 @@
                       <i class="fa fa-calendar" aria-hidden="true"></i><%= new Date(post.createdAt).toLocaleString()%>
                     </small>
                   </div>
-                  <div class="col-4"
+                  <div class="col-sm-4"
                   >
                     <div class="img-box">
                       <img loading="lazy" src="<%=post.coverImageUrl %>" alt="article-img" class="post-img">
