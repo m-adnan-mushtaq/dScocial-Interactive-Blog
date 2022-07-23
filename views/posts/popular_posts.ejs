@@ -1,0 +1,28 @@
+<p class="text-info mb-0 pb-0  secondary-title">
+    Popular Posts
+  </p>
+  <hr class="mb-3  mt-1 stylish-line" style="height:0.1em" >
+  <% if (popularPosts.length===0) { %>
+      <h5>No Posts Found!</h5>
+  <% } else { %>
+
+    <% popularPosts.forEach((post,i) => { %>
+      <div class="row align-items-center mb-3" >
+        <div class="col-4 text-center">
+          <p class="display-3 text-muted"><%= '0'+(i+1)%></p>
+        </div>
+        <div class="col-8">
+          <a href="/posts/<%=post._id%>" class="text-info article-title" >
+            <h5 class="text-dark"><%=post.title%></h5>
+  
+          </a>
+          <small class="text-muted">
+          
+            <i class="fa fa-calendar" aria-hidden="true"></i> <%=new Date(post.createdAt).toLocaleDateString()%>
+          </small>
+        </div>
+      </div>
+    <% }) %>
+
+  <% } %>
+ 

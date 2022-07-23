@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- favicon links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <meta name="description" content="dSoical is a Soical Blog">
+    <meta name="author" content="Adnan Malik">
+
+    <title>dSocial - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- toast messages css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+    <!-- animated on scroll libray -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="/dashboard/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- loader handler -->
+    <style>
+        :root {
+            --light-blue-color: #1a6dfb;
+            --dark-blue-color: #302ca4;
+            --yellow-color: #fcc13c;
+            --theme-color: #f2f5fb;
+            --info-color: #287bb5;
+            --danger-color: #da292e;
+            --warning-color: #f4bd61;
+            --success-color: #2fb380;
+        }
+        body{
+            position: relative;
+        }
+        #loader {
+            position: fixed;
+            width: 100vw !important;
+            height: 100vh !important;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            background-color: #fff;
+            color: var(--fg);
+            font: 1em/1.5 sans-serif;
+            height: calc(100vh - 4.375rem) !important;
+            display: grid;
+            place-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .input-container {
+            height: 50px;
+            position: relative;
+            width: 100%;
+        }
+
+        .ic1 {
+            margin-top: 40px;
+        }
+
+        .ic2 {
+            margin-top: 30px;
+        }
+
+        .input {
+            background-color: #fff;
+            border-radius: 12px;
+            border: 1px solid #bdbdbf;
+            box-sizing: border-box;
+            font-size: 18px;
+            height: 100%;
+            outline: 0;
+            padding: 4px 20px 0;
+            width: 100%;
+        }
+
+        .cut {
+            background-color: #fff;
+            border-radius: 10px;
+            height: 20px;
+            left: 20px;
+            position: absolute;
+            top: -20px;
+            transform: translateY(0);
+            transition: transform 200ms;
+            width: 76px;
+        }
+
+        .cut-short {
+            width: 50px;
+        }
+
+        .input:focus~.cut,
+        .input:not(:placeholder-shown)~.cut {
+            transform: translateY(8px);
+        }
+
+        .placeholder {
+            color: #65657b;
+            font-family: sans-serif;
+            left: 20px;
+            line-height: 14px;
+            pointer-events: none;
+            position: absolute;
+            transform-origin: 0 50%;
+            transition: transform 200ms, color 200ms;
+            top: 20px;
+        }
+
+        .input:focus~.placeholder,
+        .input:not(:placeholder-shown)~.placeholder {
+            transform: translateY(-30px) translateX(10px) scale(0.75);
+        }
+
+        .input:not(:placeholder-shown)~.placeholder {
+            color: #808097;
+        }
+
+        .input:focus~.placeholder {
+            color: #3565de;
+        }
+        body #toast-container>div {
+            opacity: .9;
+        }
+
+       
+    </style>

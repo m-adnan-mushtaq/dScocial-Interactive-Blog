@@ -1,0 +1,50 @@
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="/dashboard/js/jquery.min.js"></script>
+<script src="/dashboard/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/dashboard/js/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/dashboard/js/sb-admin-2.min.js"></script>
+<!-- aos js file -->
+<script defer>
+// hide the loader
+window.addEventListener('DOMContentLoaded', () => {
+loader.style.display = 'none'
+})
+AOS.init();
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script defer>
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "4000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+   
+
+    // // setTimeout(() => {
+    //     toastr["success"]("Congrats! Your Profile has been updated!", "Hurrah!")
+    //     toastr["info"]("Congrats! Your Profile has been updated!", "Hurrah!")
+    //     toastr["error"]("Congrats! Your Profile has been updated!", "error")
+    //     toastr["warning"]("Congrats! Your Profile has been updated!", "warning")
+    // }, 2000);   
+   
+    
+ </script>   
+ <%-include('../toast') %> 

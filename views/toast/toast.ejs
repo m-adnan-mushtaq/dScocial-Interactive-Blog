@@ -1,0 +1,152 @@
+
+<% if (locals.error!='') { %>
+  <div class="position-fixed top-0 end-0 p-3 toast-wrapper" style="z-index: 9999">
+    <div class="custom-toast danger">
+    <div class="toast-content">
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        <div class="message">
+            <span class="text text-1 text-danger">Error:</span>
+            <span class="text text-2"><%=error%></span>
+        </div>
+    </div>
+    <i class="fa-solid fa-xmark close"></i>
+  
+    <div class="progress"></div>
+  </div>
+  </div>
+  <script>
+    const toast1 = document.querySelector(".custom-toast")
+        closeIcon = document.querySelector(".close"),
+        progress = document.querySelector(".progress");
+        toast1.classList.add("active");
+          progress.classList.add("active");
+  
+          timer1 = setTimeout(() => {
+              toast1.classList.remove("active");
+          }, 3000); //1s = 1000 milliseconds
+  
+          timer2 = setTimeout(() => {
+            progress.classList.remove("active");
+          }, 3300);
+          closeIcon.addEventListener("click", () => {
+          toast1.classList.remove("active");
+          
+          setTimeout(() => {
+            progress.classList.remove("active");
+          }, 300);
+          
+  
+          clearTimeout(timer1);
+          clearTimeout(timer2);
+        });
+  
+  </script>
+<% } %>
+<% if (locals.err_msg!='') { %>
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+  <div class="custom-toast warning">
+  <div class="toast-content">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+      <div class="message">
+          <span class="text text-1 text-warning">Oops!</span>
+          <span class="text text-2"><%=err_msg%></span>
+      </div>
+  </div>
+  <i class="fa-solid fa-xmark close"></i>
+
+  <div class="progress"></div>
+</div>
+</div>
+<script>
+  const toast = document.querySelector(".custom-toast")
+      closeIcon = document.querySelector(".close"),
+      progress = document.querySelector(".progress");
+      toast.classList.add("active");
+        progress.classList.add("active");
+
+        timer1 = setTimeout(() => {
+            toast.classList.remove("active");
+        }, 3000); //1s = 1000 milliseconds
+
+        timer2 = setTimeout(() => {
+          progress.classList.remove("active");
+        }, 3300);
+        closeIcon.addEventListener("click", () => {
+        toast.classList.remove("active");
+        
+        setTimeout(() => {
+          progress.classList.remove("active");
+        }, 300);
+        
+
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      });
+
+</script>
+    
+<% } %>
+
+
+
+<% if (locals.success!='') { %>
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+    <div class="custom-toast success">
+    <div class="toast-content">
+      <i class="fa fa-check-circle" aria-hidden="true"></i>
+        <div class="message">
+            <span class="text text-1 text-success">Ahan!</span>
+            <span class="text text-2"><%=success%></span>
+        </div>
+    </div>
+    <i class="fa-solid fa-xmark close"></i>
+  
+    <div class="progress"></div>
+  </div>
+  </div>
+  <script>
+    const toast2 = document.querySelector(".custom-toast")
+        closeIcon = document.querySelector(".close"),
+        progress = document.querySelector(".progress");
+        toast2.classList.add("active");
+          progress.classList.add("active");
+  
+          timer1 = setTimeout(() => {
+              toast2.classList.remove("active");
+          }, 3000); //1s = 1000 milliseconds
+  
+          timer2 = setTimeout(() => {
+            progress.classList.remove("active");
+          }, 3300);
+          closeIcon.addEventListener("click", () => {
+          toast2.classList.remove("active");
+          
+          setTimeout(() => {
+            progress.classList.remove("active");
+          }, 300);
+          
+  
+          clearTimeout(timer1);
+          clearTimeout(timer2);
+        });
+  
+  </script>
+<% } %>
+
+
+<!-- showing frontend  message -->
+<div class="position-fixed top-0 end-0 p-3 toast-wrapper" style="z-index: 9999">
+  <div class="custom-toast warning">
+  <div class="toast-content">
+    <i class="fa fa-check-circle" aria-hidden="true"></i>
+      <div class="message">
+          <span class="text text-1 text-warning">Eeh!</span>
+          <span class="text text-2"><%=success%></span>
+      </div>
+  </div>
+  <i class="fa-solid fa-xmark close"></i>
+
+  <div class="progress"></div>
+</div>
+</div>
+

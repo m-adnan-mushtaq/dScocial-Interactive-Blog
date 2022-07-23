@@ -1,0 +1,29 @@
+<%-include('./partials/header') %> 
+<%-include('./partials/sidebar') %> 
+
+<div class="d-flex justify-content-center align-items-center w-100" style="min-height:80vh;">
+    <div class="card bg-white rounded shadow-lg text-center "
+    style="width:90% ;max-width:40rem;"
+    data-aos="zoom-out-down"
+    data-aos-duration="1000"
+    data-aos-delay="50"
+    >
+        <div class="card-header">
+            <h5>My Profile</h5>
+        </div>
+        <div class="card-body p-3 text-center px-5">
+            <div class="my-2">
+                <img referrerpolicy="no-ref" style="object-fit:cover;object-position:center center; " width="200" height="200" src=<%=user.picUrl%>  alt="<%=user.name%>"  class="rounded-circle d-block mx-auto img-fluid">
+            </div>
+            <h1 class="text-primary display-5 text-uppercase my-2"><%=user.name%></h1>
+            <h5><%= user.email %> </h5>
+            <div class="text-center mt-1">
+                <a href="/users/dashboard/posts" class="btn btn-primary btn-sm rounded-pill">View My Posts</a>
+                <a href="/users/dashboard/create" class="btn btn-info btn-sm rounded-pill">Create a Post</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<%-include('./partials/footer') %> 

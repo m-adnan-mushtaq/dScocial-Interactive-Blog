@@ -1,0 +1,30 @@
+<%-include('./partials/header') %> 
+<%-include('./partials/filePondcss') %> 
+<%-include('./partials/editorCss') %> 
+<%-include('./partials/sidebar') %> 
+
+<h2 class="text-primary my-2  display-4 fw-bold text-uppercase">Create Post</h2>
+<div class="bg-white shadow rounded p-3 mb-5"
+    data-aos="zoom-in-down"
+    data-aos-anchor="#example-anchor"
+    data-aos-offset="500"
+    data-aos-duration="1000" 
+    data-aos-once="true"
+>
+    <form action="/posts/create" method="post" id="form"  enctype="application/x-www-form-urlencoded">
+    
+        <%-include('./posts/form') %>
+        <div class="text-center">
+            <button type="submit" class="btn  rounded-pill p-2 btn-primary my-2 shadow" style="width:15rem ;">Create Post</button>
+
+        </div> 
+    </form>
+</div>
+ 
+
+
+<%-include('./partials/footer') %> 
+<%-include('./partials/filePondjs') %> 
+<%-include('./partials/editorjs') %>
+
+

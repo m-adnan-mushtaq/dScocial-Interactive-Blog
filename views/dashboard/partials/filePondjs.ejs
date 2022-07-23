@@ -1,0 +1,75 @@
+<!-- add before </body> -->
+<script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+<script defer>
+
+  // Register the plugin
+  FilePond.registerPlugin(
+    FilePondPluginImagePreview,
+    FilePondPluginFileEncode,
+    FilePondPluginFileValidateType,
+    FilePondPluginImageResize
+    );
+  // ... FilePond initialisation code here
+  // Select the file input and use 
+  // create() to turn it into a pond
+  
+  const pond = FilePond.create(
+    document.querySelector('input[name="cover"]')
+  );
+  FilePond.setOptions({
+    labelFileTypeNotAllowed:'File of Invalid Type,Only Images!',
+    acceptedFileTypes:['image/png', 'image/jpeg','image/jpg','image/*'],
+    imageResizeTargetWidth:1024,
+    imageResizeTargetHeight:768
+  })
+  // get the img data
+  let url=imgData.dataset.img
+  if (url) {
+    // set the default file
+    pond.addFile(url).then(file=>{
+      console.log(file);
+    }).catch(e=>console.log(e.message))
+    
+  }
+
+  FilePond.parse(document.body)
+  pond.on('addfile', (error, file) => {
+    if (error) {
+      toastr['warning']('File of Invalid Type,Only Images!','Invalid File!')
+      return;
+    }
+    document.querySelector('.filepond--credits').innerText=''
+    form.addEventListener('submit', e => {
+         e.preventDefault()
+         // grab the text editor value then submit it
+         
+     
+     
+         
+         let postContent=document.querySelector('.ql-editor').innerHTML
+         if (postContent==='' || postContent.length<250) {
+           // show user that content is empty
+          toastr['info']('Please fill Content Box! Minimum 250 Characters','Content Empty!')
+
+           return
+         }
+         postContentBox.value=postContent
+         form.submit()
+     
+         
+         
+     
+       })
+    
+  });
+
+  
+
+
+
+
+</script>

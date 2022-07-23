@@ -1,0 +1,25 @@
+<% if (locals.error!='') { %>
+    
+    <script>
+
+        toastr["error"]('<%=error%>', "Oops!") 
+    </script>
+
+<% } %>
+
+
+<% if (locals.success!='') { %>
+    <h5>ksfksjlsjlfl</h5>
+    <script>
+          toastr["success"]('<%=success%>', "Ahan!") 
+    </script>
+
+<% } %>
+
+<% if (locals.err_msg!='') { %>
+    <h5>ksfksjlsjlfl</h5>
+    <script>
+          toastr["warning"]('<%=err_msg%>', "Warning!") 
+    </script>
+
+<% } %>

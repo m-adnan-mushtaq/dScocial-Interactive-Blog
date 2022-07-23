@@ -1,0 +1,41 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header align-middle">
+          <h5 class="modal-title" id="exampleModalLabel align-middle text-danger">Confirmation</h5>
+        </div>
+        <div class="modal-body">
+          <h5 class="my-3  text-gray-800">
+            Are You Sure, You want to 
+            <span class="text-danger"> Delete</span>
+           
+             Post?
+          </h5>
+          <p class="text-gray-500">All Comments on Posts will also be deleted!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal" id="closeModal">Close</button>
+          <form action="/posts/delete?_method=DELETE" method="post">
+              <input type="hidden" name="post" id="postVal">
+              <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+    const myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+        backdrop:true
+    })
+    let btns=document.querySelectorAll('.show-modal-btn')
+    btns.forEach(btn=>{
+        btn.addEventListener('click',e=>{
+        myModal.show()
+        postVal.value=btn.previousElementSibling.value
+    })
+    })
+   
+    closeModal.addEventListener('click',()=> myModal.hide())
+</script>   

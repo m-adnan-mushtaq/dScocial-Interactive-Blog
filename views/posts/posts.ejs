@@ -1,0 +1,94 @@
+<%-include('../partials/header') %> 
+<%-include('../partials/navbar') %> 
+
+    <div class="container" style="margin-top:6rem !important ;" >
+        <div class="row my-3 p-relative"  data-aos="fade-right" data-aos-duration="500"    data-aos-once="true" >
+            <div class="col-md-9">
+                <% if (search =="" || search ==null || locals.search.length==0) { %>
+                    <h1 class="hero-title dark-title">All Posts</h1>
+                    
+                    <% }else {%>
+                        <h1 class="hero-title dark-title">Results for: "<%=search %>"</h1>
+                <% } %> 
+                <hr class="stylish-line">
+
+                <!-- paginated posts -->
+                <div class="row">
+                <% if (posts.length>0) { %>
+                  <% posts.forEach((post,index) => { %>
+                    <div class="col-md-6">
+                      <div class="img-box posts-box">
+                          <img src="<%=post.coverImageUrl %>" alt="<%=post.title %>" class="post-img">
+                          <span class="bg-danger px-3 py-2 text-light">
+                              <%=countIndex+index+1  %> 
+                          </span>
+                      </div>
+                      <div class="content my-2 bg-white  post-content">
+                          <small class="mb-2">
+                              By <%=post.author.name %> // <%=new Date(post.createdAt).toLocaleDateString()%>
+                            </small>
+                            <a href="/posts/<%=post._id%>" class="article-title" >
+                              <h5 class="text-dark"><%=post.title %></h5>
+                  
+                            </a>
+                          <p class="post-content-wrapper"><%=post.content %>....</p>
+                          
+                           
+                      </div>
+
+                  </div>
+                  <% }) %>
+                <% } else {%>
+                    <p>No Posts Found!</p>
+                <% } %>
+                  
+                   
+                    
+                </div>
+
+            <!-- paginated buttons -->
+            <nav aria-label="Page navigation example">
+                <!-- pagination box -->
+            <ul class="pagination">
+              <!-- previous page -->
+            <li class="page-item <%=(locals.previous)?'':'disabled'%>">
+              <form action="/posts" method="get">
+                  <input type="hidden" name="page" value="<%=locals.previous%>">
+                  <button  type="submit" class="page-link">Previous</button>
+              </form>
+            </li>
+            <!-- display all pages no -->
+           <% for( let i = 0; i < total_pages; i++ ) { %>
+              <!-- active button -->
+              <li class="page-item <%=(i==current_page)?'active':''%>">
+                      <form action="/posts" method="get">
+                          <input type="hidden" name="page" value="<%=i+1%>">
+                          <button  type="submit" class="page-link">
+                              <%=i+1%>
+                          </button>
+                      </form>
+                  </li>
+           <% } %>
+
+           <!-- next page button -->
+           <li class="page-item <%=(locals.next)?'':'disabled'%>">
+              <form action="/posts" method="get">
+                  <input type="hidden" name="page" value="<%=locals.next%>">
+                  <button  type="submit" class="page-link">Next</button>
+              </form>
+            </li>
+
+          </ul>
+              </nav>
+
+            </div>
+            <div class="col-md-3  col-hide "  style="margin-top:12px; position: sticky;right: 0%;z-index: 199;top: 0%;">
+                <%-include('./popular_posts.ejs') %> 
+
+            </div>
+        </div>
+    </div>
+
+
+<%-include('../partials/footer') %> 
+<script src="/js/postContentScript.js"></script>

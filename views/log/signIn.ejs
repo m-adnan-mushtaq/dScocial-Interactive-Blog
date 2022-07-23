@@ -1,0 +1,61 @@
+<%-include('../partials/header') %>
+<%-include('../partials/navbar') %>
+
+
+<div style="margin-top:7rem !important; " class="p-relative mb-2 ">
+    <div class="log-wrapper row w-75 mx-auto   rounded shadow-lg bg-white">
+        <div class="col-md-6 my-md-5 d-flex justify-content-center align-items-center flex-column"
+        data-aos="fade-left" data-aos-duration="600"
+        >
+            <h1 class="mb-2 display-5 hero-title text-darker">Sign In</h1>
+            <form action="/users/sign-in" class="form-control border-0 shadow-none mt-2 mb-1"  method="post">
+                <div class="">
+                    <div class="input-container ic1">
+                        <input id="email" class="input" type="email" placeholder=" " name="email" value="<%=user.email%>"/>
+                        <div class="cut"></div>
+                        <label for="email" class="placeholder">Email:</label>
+                    </div>    
+                
+                </div>
+
+                <!-- password -->
+                <div class="">
+                    <div class="input-container ic1">
+                        <input id="password" class="input" type="password" placeholder=" " name="password" value="<%=user.password%>" />
+                        <div class="cut"></div>
+                        <label for="password" class="placeholder">Password:</label>
+                    </div>    
+                
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary rounded-pill my-2 w-50 mx-auto">Sign In</button>
+                </div>
+            </form>
+            <div class="text-center mt-1">
+                <a href="/users/google" class="btn btn-danger rounded-pill">
+                    <i class="fa fa-google-plus" aria-hidden="true"></i>&nbsp;&nbsp;
+                    Continue with Google
+                </a>
+                <div class="text-primary mt-2">
+                    <small>No account Yet!, <a href="/users/sign-up" class="text-decoration-none">Sign Up</a> here.</small>
+                </div>
+            </div>
+            
+            
+        </div>
+
+        <!-- screen -->
+        <div class="col-6 col-hide bg-light"
+        data-aos="fade-right" data-aos-duration="600"
+        >
+            <img src="/assets/account-img.svg" alt="dSocial account screen" class="d-block w-100">
+        </div>
+    </div>
+</div>
+<div class="d-none">
+<%-include('../partials/footer') %>
+<script>
+    document.body.style.backgroundColor='royalblue'
+</script>
+
+</div>

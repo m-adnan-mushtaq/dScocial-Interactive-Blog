@@ -1,0 +1,76 @@
+<%-include('../partials/header') %> 
+<%-include('../partials/sidebar') %> 
+
+<div class="d-flex justify-content-between px-3 align-items-center">
+
+    <h2 class="my-2 mb-4 text-warning">Pending Posts
+    </h2>
+    <i class="fa fa-clock-o fa-2x text-warning" aria-hidden="true"></i>
+</div>
+
+<div class="card shadow mb-4"
+data-aos="zoom-in-up"
+data-aos-anchor="#example-anchor"
+data-aos-offset="500"
+data-aos-duration="1000" 
+data-aos-once="true"
+
+>
+<div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Posts List</h6>
+</div>
+    <% if (posts.length===0) { %>
+        <h5 class="p-3">No Posts Found!</h5>
+    <% }else { %>
+        <div class="card-body">
+        <div class="table-responsive">
+
+            <!-- include here table of posts -->
+            <%-include('./_posts') %> 
+
+
+
+
+    <!-- paginated buttons -->
+    <nav aria-label="Page navigation example">
+        <!-- pagination box -->
+        <ul class="pagination">
+            <!-- previous page -->
+            <li class="page-item <%=(locals.previous)?'':'disabled'%>">
+                <form action="/posts/view/pending" method="get">
+                    <input type="hidden" name="page" value="<%=locals.previous%>">
+                    <button type="submit" class="page-link">Previous</button>
+                </form>
+            </li>
+            <!-- display all pages no -->
+            <% for( let i=0; i < total_pages; i++ ) { %>
+                <!-- active button -->
+                <li class="page-item <%=(i==current_page)?'active':''%>">
+                    <form action="/posts/view/pending" method="get">
+                        <input type="hidden" name="page" value="<%=i+1%>">
+                        <button type="submit" class="page-link">
+                            <%=i+1%>
+                        </button>
+                    </form>
+                </li>
+                <% } %>
+
+                    <!-- next page button -->
+                    <li class="page-item <%=(locals.next)?'':'disabled'%>">
+                        <form action="/posts/view/pending" method="get">
+                            <input type="hidden" name="page" value="<%=locals.next%>">
+                            <button type="submit" class="page-link">Next</button>
+                        </form>
+                    </li>
+
+        </ul>
+    </nav>
+
+    </div>
+</div>
+<% } %> 
+</div>
+
+
+<%-include('../partials/footer') %> 
+<%-include('../partials/_modal') %> 

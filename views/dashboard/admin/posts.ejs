@@ -1,0 +1,86 @@
+<%-include('../partials/header') %> 
+<%-include('../partials/sidebar') %> 
+
+
+
+<% if (posts.length==0) { %>
+    <p>No Posts Found!</p>
+<% }else { %>
+            <div class="row g-5 p-2 justify-content-center align-items-center"
+            data-aos="zoom-out-down"
+            data-aos-duration="1000"
+            data-aos-delay="50"
+            data-aos-once="true"
+        
+        >
+                <% posts.forEach(post => { %>
+                        <div class="col-md-5 col-sm-6 mb-3  rounded p-0" style="margin-left:10px ;">
+                            <div class="card text-center w-100 m-3  shadow" >
+                            <div class="card-header d-flex justify-content-between">
+                                <div>
+                                    <p class="mb-1 text-primary text-uppercase"><b><%=(post.title.length>20)?post.title.substring(0,20)+'...':post.title%> </b></p>
+                                    <p class="mb-1 ms-0 p-0"><%=(new Date(post.createdAt)).toLocaleString()%></p>
+                                </div>
+                            </div>
+                            <div class="card-body p-0 text-center">
+                                <img referrerpolicy="no-ref" style="object-fit:cover;object-position:center center;min-height: 12rem;max-height: 12rem; " src=<%=post.coverImageUrl%>  alt="<%=post.title%>"  class="w-100 h-100 d-block card-img-top img-fluid">
+                            </div>
+                            <div class="card-footer mb-1  py-2">
+                                    <a href="/posts/<%=post.id%> " class="d-block w-100 btn mb-2 btn-info">Generate Post'view</a>
+
+                                    <!-- approve post -->
+                                    <form action="/admin/manage/posts/<%=post._id%>?_method=PUT" method="post">
+                                        <button type="submit" class="d-block w-100 btn btn-success">Approve Post</button>
+                                    </form>
+
+                                    <!-- delete post -->
+                                        <input type="hidden" name="" class="postId" value="<%=post._id%>">
+                                        <button type="submit" class="mt-2 d-block w-100 btn btn-danger show-modal-btn">Delete Post</button>
+                            </div>
+                </div>
+                        </div>
+                
+
+                <% }) %>
+                <br>
+                <!-- paginated buttons -->
+            </div>
+            <nav aria-label="Page navigation example">
+                <!-- pagination box -->
+            <ul class="pagination">
+            <!-- previous page -->
+            <li class="page-item <%=(locals.previous)?'':'disabled'%>">
+            <form action="/admin/manage/posts" method="get">
+                <input type="hidden" name="page" value="<%=locals.previous%>">
+                <button  type="submit" class="page-link">Previous</button>
+            </form>
+            </li>
+            <!-- display all pages no -->
+        <% for( let i = 0; i < total_pages; i++ ) { %>
+            <!-- active button -->
+            <li class="page-item <%=(i==current_page)?'active':''%>">
+                    <form action="/admin/manage/posts" method="get">
+                        <input type="hidden" name="page" value="<%=i+1%>">
+                        <button  type="submit" class="page-link">
+                            <%=i+1%>
+                        </button>
+                    </form>
+                </li>
+        <% } %>
+
+        <!-- next page button -->
+        <li class="page-item <%=(locals.next)?'':'disabled'%>">
+            <form action="/admin/manage/posts" method="get">
+                <input type="hidden" name="page" value="<%=locals.next%>">
+                <button  type="submit" class="page-link">Next</button>
+            </form>
+            </li>
+
+        </ul>
+            </nav>
+        
+    <% } %> 
+
+
+<%-include('../partials/footer') %> 
+<%-include('../partials/_modal') %> 

@@ -1,0 +1,31 @@
+<div class="py-3">
+    <h2 class="text-info article-title mt-3">People Also Read</h2>
+    <hr class="stylish-line">
+     <!-- row posts -->
+     <div class="row mb-5"
+     data-aos="fade-left" data-aos-duration="500"    data-aos-once="true"
+     >
+     <% if (randomPosts.length==0) { %>
+       <h5 class="text-info">
+        No Posts Added Yet!
+       </h5>
+     <% } else { %>
+        <% randomPosts.forEach(post => { %>
+            <div class="col-md-4">
+                <div class="img-box rounded-img">
+                    <img src="<%=post.coverImageUrl%> " alt="<%= post.title %> " class="post-img">
+                </div>
+                <div class="content my-2">
+                    <a href="/posts/<%=post._id%>" class="article-title ">
+                        <h5><%= post.title %> </h5>
+                    </a>
+    
+                </div>
+            </div>
+            <% }) %>
+        <% } %> 
+    
+      
+    
+    </div>
+</div>

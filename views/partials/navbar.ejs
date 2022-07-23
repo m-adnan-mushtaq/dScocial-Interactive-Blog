@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-theme fixed-top" >
+    <div class="container-md">
+        <h4>
+            <a class="nav-brand text-primary" href="/">
+                <img src="/assets/dsocial-logo.svg" class="img-fluid" alt="dSocial">
+            </a>
+        </h4>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ms-5" id="navbarNav" >
+            <ul class="navbar-nav mx-auto text-center ">
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="/posts">Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact Us</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item">
+                    <div class="nav-link">
+                        <a class=" link-primary" aria-current="page" href="#" id="searchTogglerBtn" style="font-size:23px;">
+                            <i class="fa  fa-search" aria-hidden="true"></i>
+                        </a>
+
+                    </div>
+                    <div class="wrapper">
+                        <form action="/posts" method="get" class="search-form">
+                            <input type="text" name="search" id="search" placeholder="start typing..." value="<%=locals.search%>">
+                            <button type="submit">
+                                <i class="fa fa-5x fa-search" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                        <button class=" form-close-btn" id="closeWrapperBtn">
+                            <i class="fa fa-3x fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </li>
+
+                <!-- if user singed in show him pic otherwise show him sing in page -->
+                <% if (user && user?.name) { %>
+                    <li class="dropdown-account">
+                    <button  id="toggle_menu"  class="btn">
+                        <img src="<%=user.picUrl%>" width="40" height="40" class=" rounded-circle" alt="avatar">
+                    </button>
+                    <div class="dropdown-account-menu">
+                        <a href="/users/dashboard" class="dropdown-item">Dashboard</a>
+                        <a href="/users/logout" class="dropdown-item">Log Out</a>
+                    </div>
+                </li>
+                <% } else { %>
+                    <li class="nav-item ">
+                        <a class="btn btn-primary" href="/users/sign-in">
+                            Sign in
+                        </a>
+                    </li>
+                <% } %> 
+                
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<%-include('../toast/toast')%> 

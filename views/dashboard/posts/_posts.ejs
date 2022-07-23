@@ -1,0 +1,81 @@
+
+
+            <table class="table  table-stripped align-middle" >
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cover:</th>
+                        <th>Title:</th>
+                        <th>Author:</th>
+                        <th>Status:</th>
+                        <th>Actions:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% posts.forEach((post,index) => { %>
+                        <tr class="align-middle">
+                            <td><%=countIndex+index+1  %> </td>
+                            <td>
+                                <div>
+                                    <img  
+                                    style="object-fit:cover;object-position:center"
+                                    loading="lazy" src="<%=post.coverImageUrl %>" alt="<%=post.title %>" class="rounded" width="70" height="70" style="vertical-align: bottom;">
+                                </div>
+                            
+                            </td>
+                            <td class="align-middle">
+                                <% if (post.approved) { %>
+                                    <a href="/posts/<%=post._id%>" class="link-primary "><%=post.title %></a>
+                                 
+                                <% } else{%>
+                                        <p class="text-gray-500" style="cursor: not-allowed;">
+                                            <%=post.title %>
+                                        </p>
+                                <% } %> 
+                            </td>
+                            <td class="align-middle">
+                                <p class="">
+                                    <a href="/users/view/<%=post.author.id%>" class="text-gray-800"><%=post.author.name %></a>
+                                </p>
+                            </td>
+                            <td class="align-middle text-center">
+                                <% if (post.approved) { %>
+                                    <p class="text-center mb-0">
+                                        <i class="fa fa-check-square-o fa-2x text-success" aria-hidden="true"></i>
+                                        
+                                    </p>
+                                    <small class="text-gray-500">Approved</small>
+                                <% }else { %>
+                                    <p class="text-center mb-0">
+                                        <i class="fa fa-clock-o fa-2x text-warning" aria-hidden="true"></i>
+                                        
+                                    </p>
+                                    <small class="text-gray-500">Pending</small>
+                                    <% } %> 
+                               
+                            </td>
+
+                            <!-- actions -->
+                            <td class="align-middle text-center">
+                                <!-- only edit a post if user is writer -->
+                                <!-- edit button -->
+                               <% if (user.name==post.author.name) { %>
+                                    <a class="btn btn-sm mx-1 btn-primary mb-1 mb-md-0" href="/posts/edit/<%=post._id%>">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        
+                                    </a>
+                               <% } %> 
+                               <input type="hidden" name="" class="postId" value="<%=post._id%>">
+                                <button class="btn btn-sm mx-1 btn-danger show-modal-btn">
+                                    
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                   
+                    
+                </tbody>
+            </table>
+
+

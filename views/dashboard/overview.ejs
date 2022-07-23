@@ -1,0 +1,153 @@
+
+<%-include('./partials/header') %> 
+<%-include('./partials/sidebar') %> 
+
+
+<h1 class="h3 mb-4 text-gray-800">Welcom <%=user.name%>! </h1>
+<div class="row" data-aos="zoom-in-up" data-aos-duration="600" data-aos-once="true" data-aos-easing="ease-in-sine">
+    <!-- all posts -->
+    <div class="col-xl-4 col-md-6 mb-4"
+    
+    >
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Total Posts</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%=summary.totalPosts%> </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-folder-open fa-2x text-gray-300" aria-hidden="true"></i>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- completed posts -->
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Posts (Approved)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%=summary.approvedPosts%></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-file-text fa-2x text-gray-300" aria-hidden="true"></i>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pending posts -->
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Posts (Pending)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%=summary.pendingPosts%></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-clock-o fa-2x text-gray-300" aria-hidden="true"></i>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+
+
+<!-- popular posts of specific user -->
+ <!-- Content Row -->
+ <div class="row">
+
+    <!-- Content Column -->
+    <div class="col-lg-6 mb-4">
+
+        <!-- Project Card Example -->
+        <div class="card shadow mb-4"
+        data-aos="fade-up"
+        data-aos-anchor="#example-anchor"
+        data-aos-offset="500"
+        data-aos-duration="1500"
+        data-aos-once="true"
+        >
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Popular Posts</h6>
+            </div>
+            <div class="card-body">
+                <% if (summary.popularPosts.length==0) { %>
+                    <h5 class="text-gray-600">No Posts Found! Make a Post to Rank Up!</h5>
+                <% }else { %>
+                    <%summary.popularPosts.forEach(post => { %>
+                        <div class="d-flex align-items-center my-2" style="align-items:flex-end;">
+                            <div>
+                                <img
+                                style="object-fit:cover;object-position:center"
+                                
+                                referrerpolicy="no-ref" src="<%=post.coverImageUrl%>" alt="<%=post.title%>" class="rounded" width="50" height="50" style="vertical-align: bottom;">
+                            </div>
+                            <a class=" link-info p-2" href="/posts/<%=post._id%>">
+                                <%=post.title%>
+                            </a>
+                        </div>
+                    <% }) %>
+                    
+                    <% } %> 
+                
+                
+            </div>
+        </div>
+    </div>
+    <!-- Content Column -->
+    <div class="col-lg-6 mb-4">
+
+        <!-- Top Comments -->
+        <div class="card shadow mb-4"
+        data-aos="fade-up"
+        data-aos-anchor="#example-anchor"
+        data-aos-offset="500"
+        data-aos-duration="1500"
+        data-aos-once="true"
+
+        >
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Top Comments</h6>
+            </div>
+            <div class="card-body" style="max-height:30rem;overflow:auto">
+                <% if (summary.comments.length==0) { %>
+                 <h5>Make a Post, So People can give you feedback!</h5>
+                <% } else { %>
+
+                    <% summary.comments.forEach(comment => { %>
+                        <div class="d-flex align-items-center my-2" style="align-items:flex-end;">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img src="<%=comment.author.picUrl %>" referrerpolicy="no-ref" alt="author" class="rounded" width="50" height="50" style="vertical-align: bottom;">
+                            </div>
+                            <div class="mx-1">
+                                <b class="text-muted">
+                                    <%=comment.author.name%>
+                                </b>
+                                <p class="text-muted text-wrap " >
+                                    <%=comment.comment%>
+                                </p>
+                        </div>
+                        </div>
+                    <% }) %>
+
+                <% } %> 
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>      
+
+<%-include('./partials/footer') %> 

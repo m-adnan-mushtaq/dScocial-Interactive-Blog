@@ -1,0 +1,38 @@
+<%-include('./partials/header') %> 
+<%-include('./partials/filePondcss') %> 
+<%-include('./partials/editorCss') %> 
+<%-include('./partials/sidebar') %> 
+
+<h2 class="text-info my-2  display-4 fw-bold text-uppercase">Updated Post</h2>
+<div class="bg-white shadow rounded p-3 mb-5"
+    data-aos="zoom-in-down"
+    data-aos-anchor="#example-anchor"
+    data-aos-offset="500"
+    data-aos-duration="1000" 
+    data-aos-once="true"
+>
+    <form action="/posts/edit/<%=post._id%>?_method=PUT" method="post" id="form"  enctype="application/x-www-form-urlencoded">
+    
+        <%-include('./posts/form') %>
+        <div class="text-center">
+            <button type="submit" class="btn  rounded-pill p-2 btn-info my-2 shadow" style="width:15rem ;">Update Post</button>
+
+        </div> 
+    </form>
+</div>
+ 
+
+
+<%-include('./partials/footer') %> 
+<%-include('./partials/filePondjs') %> 
+<%-include('./partials/editorjs') %>
+
+    <script >
+        let post_html=document.querySelector('.ql-editor')
+        if (post_html) {
+            post_html.innerHTML=post_html.textContent
+            
+        }
+
+    </script>
+
