@@ -46,6 +46,17 @@ app.use((req,res,next)=>{
 })
 
 //------------------------------ ROUTES---------------------
+
+//-------------- GLOBAL ERROR HANDLER-----------------
+app.use((err, req, res, next) => {
+    res.render('error',{
+        error:{
+            code:500,
+            title:'Internal Server Error',
+            message:'Something Went Wrong! Try  again later or report our problem!'
+        }
+    })
+ })
 ///----------------------- @gethome Route----------------------
 app.use('/',require('./routes/index'))
 
@@ -60,6 +71,11 @@ app.use('/comments',require('./routes/comment'))
 
 ///----------------------- @Admin Route----------------------
 app.use('/admin/manage',require('./routes/admin'))
+
+
+
+//--------------------- 404 page---------------
+app.get('/*',(req,res)=>res.render('404'))
 
 
 

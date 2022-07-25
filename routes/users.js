@@ -65,8 +65,12 @@ get(redirectAuth,(req,res)=>{
         successRedirect:'/users/dashboard'
     })(req,res,next)
     } catch (error) {
-        res.status(500).send({
-            error:error.message
+        res.render('error',{
+            error:{
+                code:500,
+                title:'Internal Server Error',
+                message:'Something Went Wrong! Try  again later or report our problem!'
+            }
         })
     }
     
@@ -102,7 +106,11 @@ router.get('/google/callback',(req,res,next)=>{
 router.get('/dashboard',ensureAuth,popularPosts("user"),showComments,async(req,res)=>{
     try {
          // get the all posts overview
-    const allPosts=await Post.find({author:req.user._id}).exec()
+    let filter={}
+    if (req.user.name!=='Admin') {
+        filter.autor=req.user._id
+    }
+    const allPosts=await Post.find(filter).exec()
     // count
     const summary={
         totalPosts:allPosts.length,
@@ -115,7 +123,13 @@ router.get('/dashboard',ensureAuth,popularPosts("user"),showComments,async(req,r
         res.render('dashboard/overview',{user:req.user,summary})
     } catch (error) {
         console.log(error);
-        console.log(error.message);
+        res.render('error',{
+            error:{
+                code:500,
+                title:'Internal Server Error',
+                message:'Something Went Wrong! Try  again later or report our problem!'
+            }
+        })
         
     }
 })
@@ -154,8 +168,7 @@ router.get('/logout',ensureAuth,(req,res)=>{
             
             }
         catch (error) {
-            console.log(error);
-            res.send(error)
+            next(error)
         }
     }
     

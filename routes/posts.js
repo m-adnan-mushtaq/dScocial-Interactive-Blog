@@ -66,8 +66,7 @@ router.route('/edit/:id')
             // render the posts page
             res.render('dashboard/editPost', { user: req.user, post, path: post.coverImageUrl })
         } catch (error) {
-            res.send(error.message)
-            console.log(error);
+            throw new Error(error)
         }
 
     }).put(ensureAuth, async (req, res) => {
@@ -176,7 +175,13 @@ router.get('/:id', randomPosts, async (req, res) => {
         res.render('posts/post', { user: req.user, post, author: post.author, randomPosts: req.randomPosts })
     } catch (error) {
         console.log(error.message);
-        res.sendStatus(500)
+        res.render('error',{
+            error:{
+                code:500,
+                title:'Internal Server Error',
+                message:'Something Went Wrong! Try  again later or report our problem!'
+            }
+        })
     }
 
 })

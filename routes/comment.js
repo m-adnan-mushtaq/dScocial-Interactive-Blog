@@ -68,7 +68,8 @@ router.post('/:id/create',ensureAuth,async(req,res)=>{
         res.redirect(`/posts/${req.params.id}#submitForm`)
     } catch (error) {
         console.log(error);
-        res.send(error)
+        req.flash('error','Failed to make comment, Try again!')
+        res.redirect(`/posts/${req.params.id}#submitForm`)
     }
 })
 

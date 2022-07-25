@@ -19,7 +19,13 @@ router.get('/users',ensureAuth,ensureAdmin,async (req,res)=>{
         
     } catch (error) {
         req.flash('err_msg','Something Went Wrong, Try again Later!')
-        res.send(error.message)
+        res.render('error',{
+            error:{
+                code:500,
+                title:'Internal Server Error',
+                message:'Something Went Wrong! Try  again later or report our problem!'
+            }
+        })
         console.log(error);
     }
     
@@ -52,8 +58,13 @@ router.get('/posts',ensureAuth,ensureAdmin,pagination('',{approved:false}),async
         })
         
     } catch (error) {
-        res.sendStatus(500)
-        console.log(error);
+        res.render('error',{
+            error:{
+                code:500,
+                title:'Internal Server Error',
+                message:'Something Went Wrong! Try  again later or report our problem!'
+            }
+        })
         
     }
 })

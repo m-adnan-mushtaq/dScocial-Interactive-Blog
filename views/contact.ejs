@@ -22,22 +22,25 @@
                                 <div class="sec2addr">
                                     <p><span class="collig">Address :</span> Jhang, Punjab Pakistan</p>
                                     <p><span class="collig">Phone :</span> +92 3089023002</p>
-                                    <p><span class="collig">Email :</span> exampleemaiaddress.com</p>
+                                    <p><span class="collig">Email :</span> example@gmail.com</p>
                                 </div>
                             </div>
                             <div class="sec2contactform">
                                 <h3 class="sec2frmtitle">Leave a Message</h3>
-                                <form action="mailto:madnanmushtaq000@gmail.com" enctype="text/plain" id="contactForm">
+                                <form action="/contact" method="post" id="contactForm">
                                     <div class="clearfix">
-                                        <input class="col2 first" type="text" placeholder="FirstName" required>
-                                        <input class="col2 last" type="text" placeholder="LastName" required>
+                                        <input class="col2 first" name="fname" type="text" placeholder="FirstName" required>
+                                        <input class="col2 last" name="lname" type="text" placeholder="LastName" required>
                                     </div>
                                     <div class="clearfix">
-                                        <input class="col2 first" type="Email" placeholder="Email" required>
-                                        <input class="col2 last" type="text" placeholder="Contact Number" required>
+                                        <input class="col2 first"
+                                        pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                                        title="Enter a valid email address!"
+                                         name="email" type="Email" placeholder="Email" required>
+                                        <input class="col2 last" name="phone" type="text" placeholder="Contact Number" required>
                                     </div>
                                     <div class="clearfix">
-                                        <textarea required name="textarea" id="" cols="30"
+                                        <textarea required name="message" id="" cols="30" minlength="20" title="Enter minimum 20 charactrers!"
                                             rows="7">Your message here...</textarea>
                                     </div>
                                     <div class="clearfix"><input type="submit" value="Send"></div>
