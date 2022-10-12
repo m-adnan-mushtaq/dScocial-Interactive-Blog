@@ -39,9 +39,12 @@ let limit=6
     // we can also specify the pagination based on model parameters  but in  my  case it will always going to be Post Model
     return async (req, res, next) => {
         let filter={...query}
-       if (req.user.name!=='Admin') {
+       if (req.user.name!='Admin') {
         filter.author=req.user._id
+
        }
+    //    console.trace('Show me',req.user);
+    //    console.log(filter);
        if (req.query.search!=="" && req.query.search != null) {
         filter={
             ...filter,

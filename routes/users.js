@@ -107,11 +107,12 @@ router.get('/dashboard',ensureAuth,popularPosts("user"),showComments,async(req,r
     try {
          // get the all posts overview
     let filter={}
-    if (req.user.name!=='Admin') {
-        filter.autor=req.user._id
+    if (req.user.name!='Admin') {
+        filter.author=req.user._id
     }
+    // console.log(req.user);
+    // console.log(filter);
     const allPosts=await Post.find(filter).exec()
-    // count
     const summary={
         totalPosts:allPosts.length,
         approvedPosts:(allPosts.filter(post=>post.approved)).length,
@@ -120,6 +121,7 @@ router.get('/dashboard',ensureAuth,popularPosts("user"),showComments,async(req,r
         comments:req.comments
 
     }
+    // res.json(summary)
         res.render('dashboard/overview',{user:req.user,summary})
     } catch (error) {
         console.log(error);
